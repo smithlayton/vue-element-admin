@@ -1,0 +1,18 @@
+jobs:
+  check:
+    name: Verify
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Pull
+        uses: actions/checkout@v2
+      - name: Install Packages
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Tests
+        run: ./workflow/check
+
+name: Verify
+
+on:
+  schedule:
+    - cron: "0 */1 * * *"
